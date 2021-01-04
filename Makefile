@@ -20,3 +20,8 @@ stop:
 build:
 	@echo "--> Building Docker Image..."
 	docker-compose ${DOCKER_COMPOSE_ARGS} build
+
+.PHONY: dockerhub
+dockerhub:
+	@echo "--> Docker hub..."
+	docker build -f build/Dockerfile.backend -t paragor/parashort:latest . && docker push paragor/parashort:latest
