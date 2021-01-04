@@ -1,0 +1,21 @@
+version: '3.4'
+services:
+    redis:
+        image: redis:6.0.9-alpine
+        ports:
+            - '6379:6379'
+        volumes:
+            - ../../build/redis.conf:/usr/local/etc/redis/redis.conf
+        command: redis-server /usr/local/etc/redis/redis.conf
+    backend:
+        environment:
+            - REDIS_ADDR=redis:6379
+        build:
+            context: ../..
+            dockerfile: build/Dockerfile.backend
+        ports:
+            - 8000:8000
+
+
+
+

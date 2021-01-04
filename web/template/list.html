@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>parashort</title>
+</head>
+<body>
+<h3>parashort</h3>
+<p>
+    and we show...
+</p>
+
+<ul>
+    <li>
+        <a href="/">main</a>
+    </li>
+    <li>
+        <a href="/list">list</a>
+    </li>
+</ul>
+</p>
+{{ if .errMsg }}
+    <pre>
+        {{.errMsg}}
+    </pre>
+{{end}}
+<form id="form" action="/z/" method="get">
+    <label for="key">search key: </label><input type="text" name="key" id="key" required minlength="5" maxlength="100">
+    <input type="submit">
+</form>
+<ul>
+    {{range $_, $key := .keys}}
+        <li><a href="/z/{{$key}}">{{$key}}</a></li>
+    {{end}}
+</ul>
+
+<script>
+    window.onload = () => {
+        const form = document.getElementById("form")
+        form.onsubmit = () => {
+            const key = document.getElementById("key").value
+            if (key.length < 5 || key.length > 100) {
+                alert("invalid key: 5 <= len  <= 100")
+                return false
+            }
+            window.location = `/z/${key}`
+            return false
+        }
+    }
+</script>
+</body>
+</html>
