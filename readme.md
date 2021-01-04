@@ -4,7 +4,7 @@
 make run
 make run
 
-HOST=http://localhost:8000
-curl -X POST $HOST/api/v1/save --data '{"text":"huiiii"}' -H 'content-type: application/json'
-curl $HOST/api/v1/list | jq '.list[]' -r | xargs -I{} curl $HOST/api/v1/url/{}
+SERVER_HOST=http://localhost:8000
+curl -X POST $SERVER_HOST/api/v1/save --data '{"text":"huiiii"}' -H 'content-type: application/json'
+curl $SERVER_HOST/api/v1/list | jq '.list[]' -r | xargs -I{} curl $SERVER_HOST/api/v1/url/{}
 ```
